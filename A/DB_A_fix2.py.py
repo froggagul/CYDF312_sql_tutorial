@@ -5,15 +5,11 @@ cursor = db.cursor()
 
 sql = '''
 update PatientInfo
-set birth_year = 9999
-where birth_year not like '____'
+set age = ((2020 - birth_year + 1)/10 * 10) || 's'
+where age != ((2020 - birth_year + 1)/10 * 10) || 's' AND birth_year != 9999 AND age != 'None'
 '''
 
 cursor.execute(sql)
-tuples = cursor.fetchall()
-
-for tuple in tuples:
-    print(tuple)
 
 cursor.close()
 db.commit()
